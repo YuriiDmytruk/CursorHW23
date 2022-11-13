@@ -1,9 +1,9 @@
 import { ADD_PUBLICATION, CHANGE_PUBLICATION } from "./types.js";
 
 export const addPublication = (publication) => {
-  return {
-    type: ADD_PUBLICATION,
-    payload: publication,
+  return (dispatch, getState) => {
+    publication.id = getState().publications.length
+    dispatch({ type: ADD_PUBLICATION, payload: publication });
   };
 };
 

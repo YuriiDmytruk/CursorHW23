@@ -6,7 +6,6 @@ import { publicationModel } from "../models/publicationModel.js";
 export const publications = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PUBLICATION: {
-      action.payload.id = state.length;
       return [...state, action.payload];
     }
     case CHANGE_PUBLICATION :{
