@@ -1,9 +1,4 @@
-import {
-  ADD_PUBLICATION,
-  CHANGE_COMMENTS,
-  CHANGE_LIKES,
-  CHANGE_RETWEETS,
-} from "./types.js";
+import { ADD_PUBLICATION, CHANGE_PUBLICATION } from "./types.js";
 
 export const addPublication = (publication) => {
   return {
@@ -13,25 +8,25 @@ export const addPublication = (publication) => {
 };
 
 export const changeComments = (id, key) => {
-  return {
-    type: CHANGE_COMMENTS,
-    id: id,
-    key: key,
+  return (dispatch, getState) => {
+    const items = getState().publications;
+    items[id].comments += key;
+    dispatch({ type: CHANGE_PUBLICATION, payload: items });
   };
 };
 
 export const changeLikes = (id, key) => {
-    return {
-        type: CHANGE_LIKES,
-        id: id,
-        key: key,
-      };
+  return (dispatch, getState) => {
+    const items = getState().publications;
+    items[id].likes += key;
+    dispatch({ type: CHANGE_PUBLICATION, payload: items });
+  };
 };
 
 export const changeRetweets = (id, key) => {
-    return {
-        type: CHANGE_RETWEETS,
-        id: id,
-        key: key,
-      };
+  return (dispatch, getState) => {
+    const items = getState().publications;
+    items[id].retweetes += key;
+    dispatch({ type: CHANGE_PUBLICATION, payload: items });
+  };
 };

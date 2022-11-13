@@ -1,4 +1,4 @@
-import { ADD_PUBLICATION, CHANGE_COMMENTS, CHANGE_LIKES, CHANGE_RETWEETS } from "./types";
+import { ADD_PUBLICATION, CHANGE_PUBLICATION } from "./types";
 
 import { publicationModel } from "../models/publicationModel.js";
 
@@ -9,17 +9,8 @@ export const publications = (state = initialState, action) => {
       action.payload.id = state.length;
       return [...state, action.payload];
     }
-    case CHANGE_COMMENTS: {
-      state[action.id].comments += action.key;
-      return [...state];
-    }
-    case CHANGE_LIKES: {
-      state[action.id].likes += action.key;
-      return [...state];
-    }
-    case CHANGE_RETWEETS: {
-      state[action.id].retweetes += action.key;
-      return [...state];
+    case CHANGE_PUBLICATION :{
+      return action.payload;
     }
     default:
       return state;
